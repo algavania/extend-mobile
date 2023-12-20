@@ -14,11 +14,24 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    debugPrint(MediaQuery.of(context).size.height.toString());
     return Scaffold(
       body: SafeArea(
-        child: SizedBox(
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: _buildBody(),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBody() {
+    return SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -92,6 +105,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton(onPressed: () {}, child: const Text('Login')),
                 const Spacer(),
+                const SizedBox(
+                  height: 24,
+                ),
                 Center(
                   child: RichText(
                       textAlign: TextAlign.center,
@@ -114,8 +130,6 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-        ),
-      ),
-    );
+        );
   }
 }
